@@ -2,18 +2,52 @@ package com.patientonboarding.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="Patient")
 public class Patient {
 	
+	@Id
+	@Column(name="patient_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int patientId;
+	
+	@Column(name="patient_fname")
 	private String Fname;
+	
+	@Column(name="patient_lname")
 	private String Lname;
+	
+	@Column(name="patient_dob")
 	private Timestamp DOB;
+	
+	@Column(name="patient_home")
 	private String HomePhone;
+	
+	@Column(name="patient_cell")
 	private String CellPhone;
+	
+	@Column(name="patient_address1")
 	private String Address1;
+	
+	@Column(name="patient_address2")
 	private String Address2;
+	
+	@Column(name="patient_city")
 	private String City;
+	
+	@Column(name="patient_state")
 	private String State;
+	
+	@Column(name="patient_zip")
 	private int zip;
+	
+	@Column(name="patient_ssn")
 	private String SSN;
 	
 	

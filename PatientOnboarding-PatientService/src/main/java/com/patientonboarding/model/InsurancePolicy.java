@@ -1,11 +1,25 @@
 package com.patientonboarding.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Insurance")
 public class InsurancePolicy {
 	
-	
-	private String providerName;
+	@Id
+	@Column(name="policy_id")
 	private int policyID;
+	
+	@Column(name="providerName")
+	private String providerName;	
+	
+	@Column(name="type")
 	private String type;
+	
+	@Column(name="phone")
 	private String phoneNumber;
 	
 	public InsurancePolicy() {
