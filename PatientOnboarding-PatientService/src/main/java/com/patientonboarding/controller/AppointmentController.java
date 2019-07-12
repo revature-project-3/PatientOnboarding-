@@ -20,6 +20,7 @@ public class AppointmentController {
 	
 	@Persistent
 	private EntityManager em;
+	
 	private Appointment appointment;
 	private AppointmentDao appointmentDao;
 
@@ -29,12 +30,13 @@ public class AppointmentController {
 	}
 	
 	@GetMapping(value="/getAppointment")
-	public Appointment getPatient(@RequestParam String dateParam, @RequestParam String timeParam,
-			@RequestParam String reasonParam, @RequestParam String descriptionParam) {
+	public Appointment getPatient(@RequestParam String dateParam, @RequestParam String timeParam) {
 		
-		appointment = new Appointment("7/9/2019","11:00 am","sick", "Sore throat and fever");
+		appointment = new Appointment("7/9/2019","11:00 am");
 		
 		return appointment;	
 	}
+	
+	
 
 }

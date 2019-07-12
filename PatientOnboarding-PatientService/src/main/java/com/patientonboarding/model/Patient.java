@@ -1,13 +1,12 @@
 package com.patientonboarding.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name="Patient")
 public class Patient {
@@ -24,7 +23,7 @@ public class Patient {
 	private String Lname;
 	
 	@Column(name="patient_dob")
-	private Timestamp DOB;
+	private String DOB;
 	
 	@Column(name="patient_home")
 	private String HomePhone;
@@ -50,27 +49,44 @@ public class Patient {
 	@Column(name="patient_ssn")
 	private String SSN;
 	
+	@Column(name="InsurancePolicy")
+	private InsurancePolicy insurancePolicy;
 	
+	
+	
+	
+
+
+
 	public Patient() {
 		super();
 	}
 	
 
 
-	public Patient(String fname, String lname, Timestamp dOB, String homePhone,String cellPhone, 
+	public Patient(String fname, String lname, String dOB, String homePhone,String cellPhone, 
 				String address1, String address2, String city, String state, int zip, String sSN) {
 		super();
-		Fname = fname;
-		Lname = lname;
-		DOB = dOB;
-		HomePhone = homePhone;
-		CellPhone = cellPhone;
-		Address1 = address1;
-		Address2 = address2;
-		City = city;
-		State = state;
+		this.Fname = fname;
+		this.Lname = lname;
+		this.DOB = dOB;
+		this.HomePhone = homePhone;
+		this.CellPhone = cellPhone;
+		this.Address1 = address1;
+		this.Address2 = address2;
+		this.City = city;
+		this.State = state;
 		this.zip = zip;
-		SSN = sSN;
+		this.SSN = "111-11-1111";
+	}
+	
+	public int getPatientId() {
+		return patientId;
+	}
+	
+	
+	public int getInsurancePolicy() {
+		return insurancePolicy.getPolicyID();
 	}
 	
 	public String getFname() {
@@ -89,11 +105,11 @@ public class Patient {
 		Lname = lname;
 	}
 	
-	public Timestamp getDOB() {
+	public String getDOB() {
 		return DOB;
 	}
 	
-	public void setDOB(Timestamp dOB) {
+	public void setDOB(String dOB) {
 		DOB = dOB;
 	}
 	
@@ -160,13 +176,18 @@ public class Patient {
 	public void setSSN(String sSN) {
 		SSN = sSN;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
-		return "Patient [Fname=" + Fname + ", Lname=" + Lname + ", DOB=" + DOB + ", HomePhone=" + HomePhone 
-				+ ", CellPhone=" + CellPhone + ", Address1=" + Address1 + ", Address2=" + Address2 + ", City=" + City 
-				+ ", State=" + State + ", zip=" + zip + ", SSN=" + SSN + "]";
+		return "Patient [patientId=" + patientId + ", Fname=" + Fname + ", Lname=" + Lname + ", DOB=" + DOB
+				+ ", HomePhone=" + HomePhone + ", CellPhone=" + CellPhone + ", Address1=" + Address1 + ", Address2="
+				+ Address2 + ", City=" + City + ", State=" + State + ", zip=" + zip + ", SSN=" + SSN
+				+ ", insurancePolicy=" + insurancePolicy.getPolicyID() + "]";
 	}
+	
+	
 	
 	
 
