@@ -3,8 +3,11 @@ package com.patientonboarding.controller;
 import javax.persistence.EntityManager;
 
 import org.springframework.data.annotation.Persistent;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +16,7 @@ import com.patientonboarding.dao.AppointmentDao;
 import com.patientonboarding.model.Appointment;
 import com.patientonboarding.model.Patient;
 
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(value="/appointment")
 public class AppointmentController {
@@ -21,6 +24,7 @@ public class AppointmentController {
 	@Persistent
 	private EntityManager em;
 	
+	private Patient patient; 
 	private Appointment appointment;
 	private AppointmentDao appointmentDao;
 
@@ -29,12 +33,17 @@ public class AppointmentController {
 		this.appointmentDao = appointmentDao;
 	}
 	
-	@GetMapping(value="/getAppointment")
-	public Appointment getPatient(@RequestParam String dateParam, @RequestParam String timeParam) {
+	@PostMapping(value="/getAppointment")
+	public ResponseEntity<Appointment> getPatient(@RequestParam("date") String dateParam, @RequestParam("time") String timeParam) {
 		
-		appointment = new Appointment("7/9/2019","11:00 am");
+		System.out.println(dateParam);
+		System.out.println(timeParam);
 		
-		return appointment;	
+		appointment = new Appointment( patient.getPatientId(),  dateParam,timeParam, appointment.getReason(),appointment.getDescription());
+		
+		appointmentDao.save(appointment);
+		
+		return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);	
 	}
 	
 	

@@ -8,42 +8,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Patient")
+@Table(name="Demographics")
 public class Patient {
 	
 	@Id
-	@Column(name="patient_id")
+	@Column(name="Patientid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int patientId;
 	
 	@Column(name="patient_fname")
 	private String Fname;
 	
-	@Column(name="patient_lname")
-	private String Lname;
-	
-	@Column(name="patient_dob")
+	@Column(name="birthdate",  nullable= false)
 	private String DOB;
 	
-	@Column(name="patient_home")
+	@Column(name="phone")
 	private String HomePhone;
 	
-	@Column(name="patient_cell")
-	private String CellPhone;
-	
-	@Column(name="patient_address1")
+	@Column(name="addressline1",  nullable= false)
 	private String Address1;
 	
-	@Column(name="patient_address2")
+	@Column(name="addressline2")
 	private String Address2;
 	
-	@Column(name="patient_city")
+	@Column(name="city", nullable= false)
 	private String City;
 	
-	@Column(name="patient_state")
+	@Column(name="state",  nullable= false)
 	private String State;
 	
-	@Column(name="patient_zip")
+	@Column(name="zipcode")
 	private int zip;
 	
 	@Column(name="patient_ssn")
@@ -64,14 +58,12 @@ public class Patient {
 	
 
 
-	public Patient(String fname, String lname, String dOB, String homePhone,String cellPhone, 
+	public Patient(String fname, String dOB, String homePhone, 
 				String address1, String address2, String city, String state, int zip, String sSN) {
 		super();
 		this.Fname = fname;
-		this.Lname = lname;
 		this.DOB = dOB;
 		this.HomePhone = homePhone;
-		this.CellPhone = cellPhone;
 		this.Address1 = address1;
 		this.Address2 = address2;
 		this.City = city;
@@ -97,14 +89,6 @@ public class Patient {
 		Fname = fname;
 	}
 	
-	public String getLname() {
-		return Lname;
-	}
-	
-	public void setLname(String lname) {
-		Lname = lname;
-	}
-	
 	public String getDOB() {
 		return DOB;
 	}
@@ -119,14 +103,6 @@ public class Patient {
 	
 	public void setHomePhone(String homePhone) {
 		HomePhone = homePhone;
-	}
-	
-	public String getCellPhone() {
-		return CellPhone;
-	}
-	
-	public void setCellPhone(String cellPhone) {
-		CellPhone = cellPhone;
 	}
 	
 	public String getAddress1() {
@@ -181,11 +157,14 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "Patient [patientId=" + patientId + ", Fname=" + Fname + ", Lname=" + Lname + ", DOB=" + DOB
-				+ ", HomePhone=" + HomePhone + ", CellPhone=" + CellPhone + ", Address1=" + Address1 + ", Address2="
-				+ Address2 + ", City=" + City + ", State=" + State + ", zip=" + zip + ", SSN=" + SSN
-				+ ", insurancePolicy=" + insurancePolicy.getPolicyID() + "]";
+		return "Patient [patientId=" + patientId + ", Fname=" + Fname + ", DOB=" + DOB + ", HomePhone=" + HomePhone
+				+ ", Address1=" + Address1 + ", Address2=" + Address2 + ", City=" + City + ", State=" + State + ", zip="
+				+ zip + ", SSN=" + SSN + ", insurancePolicy=" + insurancePolicy + "]";
 	}
+
+
+
+	
 	
 	
 	

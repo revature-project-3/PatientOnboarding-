@@ -23,10 +23,13 @@ public class Appointment {
 	private String time;
 	
 	@Column(name="appointment_reason")
-	private String reason;
+	private String reason= "Initial Check-up";
 	
 	@Column(name="appointment_description")
-	private String description;
+	private String description = "Your doctor will ask for your medical history, including:\r\n" + 
+			"Blood will be drawn and several laboratory tests will also be done, including:\r\n" + 
+			"Your healthcare provider will probably want to discuss the following:\r\n" + 
+			"Possible questions to ask your provider include";
 
 	private Patient patient;
 	
@@ -34,16 +37,8 @@ public class Appointment {
 		super();
 	}
 
-	public Appointment(Patient patient, String date, String time, String reason, String description) {
+	public Appointment(int i, String date, String time, String reason, String description) {
 		super();
-		this.date = date;
-		this.time = time;
-		this.reason = reason;
-		this.description = description;
-	}
-
-	public Appointment(String date, String time) {
-		
 		this.date = date;
 		this.time = time;
 		this.reason = "Initial Check-up";
@@ -52,6 +47,7 @@ public class Appointment {
 				"Your healthcare provider will probably want to discuss the following:\r\n" + 
 				"Possible questions to ask your provider include";
 	}
+
 
 	public int getAppointmentId() {
 		return appointmentId;
@@ -81,21 +77,13 @@ public class Appointment {
 		return reason;
 	}
 
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-
 	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+		return this.description;
 	}
 	
 	
 	public String getPatient() {
-		return patient.getFname() + " " + patient.getLname();
+		return patient.getFname();
 	}
 
 	@Override
