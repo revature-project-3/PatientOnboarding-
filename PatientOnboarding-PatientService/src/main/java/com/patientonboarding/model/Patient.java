@@ -1,5 +1,6 @@
 package com.patientonboarding.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,10 +46,10 @@ public class Patient {
 	@Column(name="patient_ssn")
 	private String SSN;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private InsurancePolicy insurancePolicy;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Appointment appointment;
 	
 	
@@ -75,6 +76,7 @@ public class Patient {
 		this.State = state;
 		this.zip = zip;
 		this.SSN = "111-11-1111";
+		this.insurancePolicy = new InsurancePolicy();
 	}
 	
 	public int getPatientId() {
@@ -84,6 +86,9 @@ public class Patient {
 	
 	public int getInsurancePolicy() {
 		return insurancePolicy.getPolicyID();
+	}
+	public void setInsurancePolicy(InsurancePolicy ip) {
+		this.insurancePolicy = ip;
 	}
 	
 	public String getFname() {
@@ -164,7 +169,7 @@ public class Patient {
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", Fname=" + fname + ", DOB=" + DOB + ", HomePhone=" + HomePhone
 				+ ", Address1=" + Address1 + ", Address2=" + Address2 + ", City=" + City + ", State=" + State + ", zip="
-				+ zip + ", SSN=" + SSN + ", insurancePolicy=" + insurancePolicy + "]";
+				+ zip + ", SSN=" + SSN  + "]";
 	}
 
 

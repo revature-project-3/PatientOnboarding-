@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.patientonboarding.dao.PatientDao;
+import com.patientonboarding.model.InsurancePolicy;
 import com.patientonboarding.model.Patient;
 
 //@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value="/pat")
+@RequestMapping(value="/patient")
 public class PatientController {
 		
 	
@@ -32,7 +33,7 @@ public class PatientController {
 	}
 	
 		
-	@PostMapping(value="/patient")
+	@PostMapping(value="/patientdemo")
 	public ResponseEntity<Patient> updatingPatientDemographics(@RequestParam("fullname") String fullName,
 			 @RequestParam("phonenumber") String homePhone, @RequestParam("address1") String Address1, 
 			 @RequestParam("address2") String Address2, @RequestParam("city") String city,
@@ -41,7 +42,7 @@ public class PatientController {
 
 		System.out.println("In the patient demo controller "+fullName );
 		
-		Patient newPatient = patient;
+		Patient newPatient = new Patient();
 		newPatient.setFname(fullName);
 		newPatient.setHomePhone(homePhone);
 		newPatient.setAddress1(Address1);
@@ -49,7 +50,9 @@ public class PatientController {
 		newPatient.setCity(city);
 		newPatient.setState(state);
 		newPatient.setZip(zip);
-		newPatient.getSSN();
+		newPatient.setDOB("NUHUH");
+		newPatient.setSSN("55555");
+		newPatient.setInsurancePolicy(new InsurancePolicy());
 		System.out.println(newPatient);
 		
 		patientDao.save(newPatient);

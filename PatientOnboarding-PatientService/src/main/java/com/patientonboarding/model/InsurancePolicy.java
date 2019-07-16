@@ -2,6 +2,8 @@ package com.patientonboarding.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ public class InsurancePolicy {
 	
 	@Id
 	@Column(name="policy_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int policyID;
 	
 	@Column(name="providerName")
@@ -24,6 +27,10 @@ public class InsurancePolicy {
 	
 	public InsurancePolicy() {
 		super();
+		// policyID = 0;
+		providerName = "None";
+		type = "N/A";
+		phoneNumber = "N/A";
 	}
 
 	public InsurancePolicy(String providerName, int policyID, String type, String phoneNumber) {
