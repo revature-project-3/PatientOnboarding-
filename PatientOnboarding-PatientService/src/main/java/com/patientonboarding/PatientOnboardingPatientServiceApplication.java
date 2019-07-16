@@ -1,4 +1,4 @@
-package com.patientonboarding.patientservice;
+package com.patientonboarding;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

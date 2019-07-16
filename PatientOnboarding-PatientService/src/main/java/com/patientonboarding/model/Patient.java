@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +18,8 @@ public class Patient {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int patientId;
 	
-	@Column(name="patient_fname")
-	private String Fname;
+	@Column(name="fname")
+	private String fname;
 	
 	@Column(name="birthdate",  nullable= false)
 	private String DOB;
@@ -43,8 +45,11 @@ public class Patient {
 	@Column(name="patient_ssn")
 	private String SSN;
 	
-	@Column(name="InsurancePolicy")
+	@OneToOne
 	private InsurancePolicy insurancePolicy;
+	
+	@OneToOne
+	private Appointment appointment;
 	
 	
 	
@@ -61,7 +66,7 @@ public class Patient {
 	public Patient(String fname, String dOB, String homePhone, 
 				String address1, String address2, String city, String state, int zip, String sSN) {
 		super();
-		this.Fname = fname;
+		this.fname = fname;
 		this.DOB = dOB;
 		this.HomePhone = homePhone;
 		this.Address1 = address1;
@@ -82,11 +87,11 @@ public class Patient {
 	}
 	
 	public String getFname() {
-		return Fname;
+		return fname;
 	}
 	
 	public void setFname(String fname) {
-		Fname = fname;
+		this.fname = fname;
 	}
 	
 	public String getDOB() {
@@ -157,7 +162,7 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "Patient [patientId=" + patientId + ", Fname=" + Fname + ", DOB=" + DOB + ", HomePhone=" + HomePhone
+		return "Patient [patientId=" + patientId + ", Fname=" + fname + ", DOB=" + DOB + ", HomePhone=" + HomePhone
 				+ ", Address1=" + Address1 + ", Address2=" + Address2 + ", City=" + City + ", State=" + State + ", zip="
 				+ zip + ", SSN=" + SSN + ", insurancePolicy=" + insurancePolicy + "]";
 	}

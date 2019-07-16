@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,36 +17,28 @@ public class Appointment {
 	@Column(name="appointment_id")
 	private int appointmentId;
 	
-	@Column(name="appointment_date")
+	@Column(name="date")
 	private String date;
 	
-	@Column(name="appointment_time")
+	@Column(name="time")
 	private String time;
 	
-	@Column(name="appointment_reason")
-	private String reason= "Initial Check-up";
+	@Column(name="reason")
+	private String reason;
 	
 	@Column(name="appointment_description")
-	private String description = "Your doctor will ask for your medical history, including:\r\n" + 
-			"Blood will be drawn and several laboratory tests will also be done, including:\r\n" + 
-			"Your healthcare provider will probably want to discuss the following:\r\n" + 
-			"Possible questions to ask your provider include";
-
-	private Patient patient;
+	private String description;
 	
 	public Appointment() {
 		super();
 	}
 
-	public Appointment(int i, String date, String time, String reason, String description) {
+	public Appointment(String date, String time) {
 		super();
 		this.date = date;
 		this.time = time;
 		this.reason = "Initial Check-up";
-		this.description = "Your doctor will ask for your medical history, including:\r\n" + 
-				"Blood will be drawn and several laboratory tests will also be done, including:\r\n" + 
-				"Your healthcare provider will probably want to discuss the following:\r\n" + 
-				"Possible questions to ask your provider include";
+		this.description = "Please bring a list of all current perscriptions.";
 	}
 
 
@@ -80,16 +73,11 @@ public class Appointment {
 	public String getDescription() {
 		return this.description;
 	}
-	
-	
-	public String getPatient() {
-		return patient.getFname();
-	}
 
 	@Override
 	public String toString() {
 		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", time=" + time + ", reason="
-				+ reason + ", description=" + description + ", patient=" + patient + "]";
+				+ reason + ", description=" + description + "]";
 	}
 
 	

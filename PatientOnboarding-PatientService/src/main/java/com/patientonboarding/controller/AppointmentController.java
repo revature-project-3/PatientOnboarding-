@@ -3,7 +3,9 @@ package com.patientonboarding.controller;
 import java.util.Calendar;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Persistent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,18 +32,20 @@ public class AppointmentController {
 	private Appointment appointment;
 	private AppointmentDao appointmentDao;
 
+	@Autowired
 	public AppointmentController(AppointmentDao appointmentDao) {
 
 		this.appointmentDao = appointmentDao;
 	}
 	
 	@PostMapping(value="/getAppointment")
+	@Transactional
 	public ResponseEntity<Appointment> getPatient(@RequestParam("date") String dateParam, @RequestParam("time") String timeParam) {
 		
 		System.out.println(dateParam);
 		System.out.println(timeParam);
 		
-		appointment = new Appointment( patient.getPatientId(),  dateParam,timeParam, appointment.getReason(),appointment.getDescription());
+		appointment = new Appointment(dateParam, timeParam);
 		
 		appointmentDao.save(appointment);
 		

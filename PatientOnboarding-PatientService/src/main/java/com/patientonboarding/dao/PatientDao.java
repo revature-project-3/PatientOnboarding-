@@ -6,6 +6,6 @@ import com.patientonboarding.model.Patient;
 
 public interface PatientDao extends CrudRepository<Patient,Integer>{
 
-	public Patient findByFname(String Fname, String Lname);
+	public Patient findByFname(String Fname);
 	
 }
