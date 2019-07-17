@@ -34,24 +34,19 @@ public class InsuranceController {
 
 
 	@PostMapping(value="/patientInsurance")
-	public InsurancePolicy updatingPatientInsurance(@RequestParam String providerParam,
-			@RequestParam String phoneNumberParam, @RequestParam String insuranceTypeParam,
-			@RequestParam int policyNumberParam){
-		
-		String provider = providerParam;
-		String phoneNumber = phoneNumberParam;
-		String insuranceType = insuranceTypeParam;
-		int policyNumber = policyNumberParam;
+	public InsurancePolicy updatingPatientInsurance(@RequestParam("provider") String providerParam,
+			@RequestParam("phonenumber") String phoneNumberParam, @RequestParam("type") String insuranceTypeParam,
+			@RequestParam("policynumber") int policyNumberParam){
+				System.out.println("In the insurance:"+ providerParam);
 		
 		InsurancePolicy newInsurance = iPolicy;
-		newInsurance.setProviderName(provider);
-		newInsurance.setPhoneNumber(phoneNumber);
-		newInsurance.setType(insuranceType);
-		newInsurance.setPolicyID(policyNumber);
-		//insuranceDao.save(newInsurance);
+		newInsurance.setProviderName(providerParam);
+		newInsurance.setPhoneNumber(phoneNumberParam);
+		newInsurance.setType(insuranceTypeParam);
+		newInsurance.setPolicyID(policyNumberParam);
+		insuranceDao.save(newInsurance);
 		
 		return newInsurance;
-		//return new InsurancePolicy("bluecross",  254682,"888-956-3598", "medical");
 	} 
 	
 	
